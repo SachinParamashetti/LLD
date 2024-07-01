@@ -61,10 +61,10 @@ public class Player {
 	}
 	private boolean validateMove(int row, int col, Board board) {
 		// TODO Auto-generated method stub
-		if(row>=board.getDimension()) {
+		if(row>=board.getDimension() || row<0) {
 			return false;
 		}
-		if(col>=board.getDimension()) {
+		if(col>=board.getDimension() || col<0) {
 			return false;
 		}
 		if(!CellState.EMPTY.equals( board.getBoard().get(row).get(col).getCellState())) {
