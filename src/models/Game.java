@@ -184,5 +184,31 @@ public class Game {
 		}
 		return false;
 	}
+	public void undo() {
+		// TODO Auto-generated method stub
+		if(moves.size()==0) {
+			System.out.println("No moves to undo");
+			return;
+		}
+		
+		Move lastMove = moves.get(moves.size()-1);
+		moves.remove(lastMove);
+		
+		Cell cell = lastMove.getCell();
+		cell.setCellState(CellState.EMPTY);
+		cell.setPlayer(null);
+		
+		for(WinningStrategy winningStrategy : winningstratergies) {
+			winningStrategy.undo(board, lastMove);
+		}
+		
+		if(nextPlayerIndex !=0) {
+			nextPlayerIndex--;
+		}
+		else {
+			nextPlayerIndex = players.size()-1;
+		}
+		
+	}
 	
 }

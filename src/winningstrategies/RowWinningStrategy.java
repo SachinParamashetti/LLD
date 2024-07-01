@@ -33,11 +33,23 @@ public class RowWinningStrategy implements WinningStrategy{
 		
 		//check if the symbol count has reached size of the board
 		if(board.getBoard().size()==rowMap.get(symbol)) {
-			System.out.println("Winning via "+row);
+			System.out.println("Winning via row"+row);
 			return true;
 		}
 		
 		return false;
+	}
+
+
+
+	@Override
+	public void undo(Board board, Move lastMove) {
+		// TODO Auto-generated method stub
+		int row = lastMove.getCell().getRow();
+		char symbol = lastMove.getPlayer().getSymbol();
+		
+		Map<Character, Integer> rowMap = map.get(row);
+		rowMap.put(symbol, rowMap.get(symbol)-1);
 	} 
 
 }

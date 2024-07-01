@@ -33,11 +33,24 @@ public class ColWinningStrategy implements WinningStrategy{
 		
 		//check if the symbol count has reached size of the board
 		if(board.getBoard().size()==colMap.get(symbol)) {
-			System.out.println("Winning via "+col);
+			System.out.println("Winning via column "+col);
 			return true;
 		}
 		
 		return false;
+	}
+
+
+
+	@Override
+	public void undo(Board board, Move lastMove) {
+		// TODO Auto-generated method stub
+		int col = lastMove.getCell().getCol();
+		char symbol = lastMove.getPlayer().getSymbol();
+		
+		Map<Character, Integer> colMap = map.get(col);
+		colMap.put(symbol, colMap.get(symbol)-1);
+		
 	} 
 
 
